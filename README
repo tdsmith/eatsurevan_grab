@@ -4,6 +4,8 @@ December 4, 2010
 
 Hacked together real fast! 'Cause that's how we roll. Here are some scripts to scrape restaurant inspection data from the unfriendly Vancouver Coastal Health restaurant inspection website. (http://www.foodinspectionweb.vcha.ca/)
 
+See it more or less in action at: http://www.google.com/fusiontables/DataSource?snapid=112465 -- I recommend the map view, myself.
+
 Things that you need:
 1. Python 2.x
 2. BeautifulSoup
@@ -22,7 +24,7 @@ Run them in this order:
     of inspection. Creates inspections.repr.
 
 You could try running fetchinspections.py if you wanted. But I haven't tested
-it.
+it. (mkdir inspections first.)
 
 To generate the score reports we have now:
 1. Modify restos.tab s.t. the last column is just the GUID portion of the URL.
@@ -32,6 +34,7 @@ To generate the score reports we have now:
     GUID to the number of re-inspections noted recently on the VCH website
     (the "score").
 3. python mkcsv.py
-    Generates a CSV file suitable for upload to Google Fusion Tables.
+    Generates a CSV file suitable for upload to Google Fusion Tables. Creates
+    (imaginitively) output.csv.
 
 And that's where we are.
