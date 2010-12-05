@@ -4,7 +4,7 @@ December 4, 2010
 
 Hacked together real fast! 'Cause that's how we roll. Here are some scripts to scrape restaurant inspection data from the unfriendly Vancouver Coastal Health restaurant inspection website. (http://www.foodinspectionweb.vcha.ca/)
 
-See it more or less in action at: http://www.google.com/fusiontables/DataSource?snapid=112465 -- I recommend the map view, myself. Note that inconsistent address information causes some of the points to appear in unlikely locations
+See it more or less in action at: http://www.google.com/fusiontables/DataSource?snapid=111755 -- I recommend the map view, myself. Note that inconsistent address information causes some of the points to appear in unlikely locations
 
 Things that you need:
 1. Python 2.x
