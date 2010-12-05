@@ -35,7 +35,7 @@ for line in buf:
 f = open('output.csv', 'w')
 print >> f, 'Name,Address,Restaurant GUID,Score'
 for line in buf:
-    f.write(line[0] + ',')
+    f.write('"' + line[0] + '",')
     f.write('"' + line[1] + ', ' + line[2] + ' BC",')
     f.write(line[4] + ',')
     f.write(str(line[5]) + '\n')
