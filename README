@@ -26,7 +26,7 @@ Run them in this order:
 
 To fetch each individual inspection report (our current "score" does not depend
 on these, but probably should):
-4. python fetchinspections.py start finish
+4. mkdir inspections; python fetchinspections.py start finish
     start and finish are indicies into the list of restaurants, so you can
     fetch a sliver of the data set at a time. This is useful for parallelizing
     the fetch. For example, you can start six simultaneous instances of
