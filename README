@@ -1,0 +1,37 @@
+EatSure Van Data Grabber
+Tim Smith, Naoya Makino
+December 4, 2010
+
+Hacked together real fast! 'Cause that's how we roll. Here are some scripts to scrape restaurant inspection data from the unfriendly Vancouver Coastal Health restaurant inspection website. (http://www.foodinspectionweb.vcha.ca/)
+
+Things that you need:
+1. Python 2.x
+2. BeautifulSoup
+3. A sense of adventure
+
+Run them in this order:
+1. python fetchandparselist.py > restos.tab
+    Fetches and parses the entire list of restaurants from VCH. Creates
+    restaurants.html. Outputs restos.tab, which is a tab-separated text file.
+    It contains restaurant name, address, and date of last inspection.
+    The last column is the relative URL to each restaurant's info page.
+2. mkdir restos; python fetchrestos.py
+    Fetches the restaurant info pages for each individual restaurant.
+3. python parserestos.py
+    Creates an index of inspections that have occurred, the date, and the type
+    of inspection. Creates inspections.repr.
+
+You could try running fetchinspections.py if you wanted. But I haven't tested
+it.
+
+To generate the score reports we have now:
+1. Modify restos.tab s.t. the last column is just the GUID portion of the URL.
+    (Sorry.)
+2. python score.py
+    Generates scores.pickle, which contains a dictionary linking the restaurant
+    GUID to the number of re-inspections noted recently on the VCH website
+    (the "score").
+3. python mkcsv.py
+    Generates a CSV file suitable for upload to Google Fusion Tables.
+
+And that's where we are.
