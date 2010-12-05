@@ -20,10 +20,10 @@ import urllib2
 # note magic page-size=9999 parameter
 url = 'http://www.foodinspectionweb.vcha.ca/Facility?search-term=&report-type=ffffffff-ffff-ffff-ffff-fffffffffff1&area=&sort-by=Name&page=0&page-size=9999'
 
-f = urllib2.urlopen(url % i)
+f = urllib2.urlopen(url)
 buf = f.read()
 f.close()
-g = open('restaurants.html' % i, 'w')
+g = open('restaurants.html', 'w')
 g.write(buf)
 g.close()
 
