@@ -1,9 +1,13 @@
 #!/usr/bin/python
+#
+# mkcsv.py
+# Creates a CSV file suitable for upload to Google Fusion Tables for geocoding.
+# Depends on scores.pickle and restos.tab.
 
 import cPickle
 
 # parse restaurants
-f = open('restos-guid.tab')
+f = open('restos.tab')
 buf = f.readlines()
 f.close()
 buf = [line[:-1].split('\t') for line in buf]
@@ -29,7 +33,7 @@ for line in buf:
 
 # print CSV
 f = open('output.csv', 'w')
-print >> f, 'Name,Address,Inspection Date,GUID,Score'
+print >> f, 'Name,Address,Restaurant GUID,Score'
 for line in buf:
     f.write(line[0] + ',')
     f.write('"' + line[1] + ', ' + line[2] + ' BC",')

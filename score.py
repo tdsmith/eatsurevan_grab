@@ -1,4 +1,9 @@
 #!/usr/bin/python
+#
+# score.py
+# Counts number of re-inspections that restaurants have endured, assuming that
+# this is a proxy for number/severity of failures.
+# Depends on inspections.repr. 
 
 import cPickle
 

@@ -4,7 +4,7 @@ December 4, 2010
 
 Hacked together real fast! 'Cause that's how we roll. Here are some scripts to scrape restaurant inspection data from the unfriendly Vancouver Coastal Health restaurant inspection website. (http://www.foodinspectionweb.vcha.ca/)
 
-See it more or less in action at: http://www.google.com/fusiontables/DataSource?snapid=112465 -- I recommend the map view, myself.
+See it more or less in action at: http://www.google.com/fusiontables/DataSource?snapid=112465 -- I recommend the map view, myself. Note that inconsistent address information causes some of the points to appear in unlikely locations
 
 Things that you need:
 1. Python 2.x
@@ -16,24 +16,32 @@ Run them in this order:
     Fetches and parses the entire list of restaurants from VCH. Creates
     restaurants.html. Outputs restos.tab, which is a tab-separated text file.
     It contains restaurant name, address, and date of last inspection.
-    The last column is the relative URL to each restaurant's info page.
+    The last column is the restaurant's GUID.
 2. mkdir restos; python fetchrestos.py
     Fetches the restaurant info pages for each individual restaurant.
+    For bonus points, parallelize this yourself; it takes a while.
 3. python parserestos.py
     Creates an index of inspections that have occurred, the date, and the type
     of inspection. Creates inspections.repr.
 
-You could try running fetchinspections.py if you wanted. But I haven't tested
-it. (mkdir inspections first.)
+To fetch each individual inspection report (our current "score" does not depend
+on these, but probably should):
+4. python fetchinspections.py start finish
+    start and finish are indicies into the list of restaurants, so you can
+    fetch a sliver of the data set at a time. This is useful for parallelizing
+    the fetch. For example, you can start six simultaneous instances of
+    fetchinspections... [0 1000), [1000 2000), [2000 3000), [3000 4000),
+    [4000 5000), and [5000 6000). Python will not complain if you overshoot
+    the end of the data set on the last one. There are slightly fewer than 6000
+    restaurants in the database. Note that actually fetching some of these
+    seems to cause the VCH server to throw 500 errors. Unclear why.
 
 To generate the score reports we have now:
-1. Modify restos.tab s.t. the last column is just the GUID portion of the URL.
-    (Sorry.)
-2. python score.py
+1. python score.py
     Generates scores.pickle, which contains a dictionary linking the restaurant
     GUID to the number of re-inspections noted recently on the VCH website
     (the "score").
-3. python mkcsv.py
+2. python mkcsv.py
     Generates a CSV file suitable for upload to Google Fusion Tables. Creates
     (imaginitively) output.csv.
 

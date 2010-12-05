@@ -1,9 +1,12 @@
 #!/usr/bin/python
+#
+# Parses restaurant pages from VCH to understand where to look for inspections,
+# how many there are to fetch, and what kind they are.
+# Depends on restaurant pages having been previously downloaded to restos/.
+# Creates inspections.repr.
 
 import os, sys, cPickle
 from BeautifulSoup import BeautifulSoup
-
-# from restoObjs import Restaurant, Inspection
 
 f = open('restos.tab', 'r')
 buf = f.readlines()
@@ -11,10 +14,9 @@ f.close()
 
 buf = [line[:-1].split('\t') for line in buf]
 
-restoObjs = []
 restaurants = []
 
-# restaurant = (guid, [(inspGuid, inspDate, inspType)]]
+# restaurant = (guid, [(inspGuid, inspDate, inspType), ...])
 
 for line in buf:
     print>>sys.stderr, line[0]
