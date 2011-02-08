@@ -12,7 +12,7 @@ Things that you need:
 3. A sense of adventure
 
 Run them in this order:
-1. python fetchandparselist.py > restos.tab
+1. python fetchandparselist.py
     Fetches and parses the entire list of restaurants from VCH. Creates
     restaurants.html. Outputs restos.tab, which is a tab-separated text file.
     It contains restaurant name, address, and date of last inspection.
@@ -33,8 +33,10 @@ on these, but probably should):
     fetchinspections... [0 1000), [1000 2000), [2000 3000), [3000 4000),
     [4000 5000), and [5000 6000). Python will not complain if you overshoot
     the end of the data set on the last one. There are slightly fewer than 6000
-    restaurants in the database. Note that actually fetching some of these
-    seems to cause the VCH server to throw 500 errors. Unclear why.
+    restaurants in the database. You will see some 500 errors, which happen
+    because the scraper (erroneously) tries to grab a Permit object instead
+    when there are no inspections to grab. These should not be cause for
+    concern.
 
 To generate the score reports we have now:
 1. python score.py

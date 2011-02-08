@@ -1,4 +1,8 @@
 restos/
 inspections/
 *html
+*pyc
+*tab
+*pickle
+*repr
 

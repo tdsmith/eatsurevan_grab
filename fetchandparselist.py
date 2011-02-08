@@ -5,7 +5,7 @@
 # date of last inspection, and the URL to the info page, which includes the
 # GUID we'll use to refer to it later.
 #
-# Run as: python fetchandparselist.py > restos.tab
+# Run as: python fetchandparselist.py
 # Additionally creates restaurants.html.
 
 import urllib2, sys
@@ -47,4 +47,6 @@ for tr in trlist:
 # 2: jurisdiction (not quite city)
 # 3: date of last inspection (DD-Mon-YYYY)
 # 4: Restaurant GUID
-print '\n'.join(['\t'.join(resto) for resto in restos])
+f = open('restos.tab', 'w')
+print >> f, '\n'.join(['\t'.join(resto) for resto in restos])
+f.close()

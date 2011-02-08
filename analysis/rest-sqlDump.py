@@ -46,6 +46,9 @@ def main():
 
     # load inspection data so we can get violation counts
     # or not
+    f = open('../nicenaughty.repr', 'r')
+    nice, naughty = eval(f.read())
+    f.close()
 
     # let's just make the tuple
     tlist = []
@@ -58,7 +61,7 @@ def main():
         latitude, longitude = geocodes.get(resto[4], (None, None))
         inspected = updated = sqlDate(resto[3])
         critical = 0
-        noncritical = 1 #FIXME
+        noncritical = resto[4] in naughty
         active = 1
         if 'proposed' in location.lower(): active = 0
         closed = 0
