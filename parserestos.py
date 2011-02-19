@@ -21,9 +21,13 @@ restaurants = []
 for line in buf:
     print>>sys.stderr, line[0]
     guid = line[-1].split('/')[-1]
-    f = open('restos/%s.html' % guid)
-    resto = f.read()
-    f.close()
+    try:
+        f = open('restos/%s.html' % guid)
+        resto = f.read()
+        f.close()
+    except:
+        print 'Skipping; no record found'
+        continue
     soup = BeautifulSoup(resto)
     try:
         inspectionsPara = soup.findAll('table')[1]

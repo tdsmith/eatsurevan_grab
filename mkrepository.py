@@ -16,6 +16,7 @@ from BeautifulSoup import BeautifulSoup
 # inspection = {'date': '27-Feb-2010',
 #               'guid': 'guid',
 #               'reason': 'Compliance', # or Routine, or Re-inspection
+#               'actions': ['action0', 'action1', ...]
 #               'findings': [finding0, finding1, ..., findingN]}
 #
 # finding = ('heading', 'description', numNew, numResolved)
@@ -76,6 +77,8 @@ def main():
         # inspection date
         inspection['date'] = soup.find('th', text='Inspection Date: ').findNext('td').text
         inspection['reason'] = soup.find('th', text='Reason for Inspection: ').findNext('td').text
+        inspection['actions'] = soup.find('th', text='Action Taken: ').findNext('td').text.split(', ')
+        inspection['followup'] = soup.find('th', text='Follow-up Required: ').findNext('td').text
         inspection['findings'] = []
 
         # extract the violation headings

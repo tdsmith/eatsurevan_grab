@@ -16,8 +16,11 @@ restos = eval(buf)
 
 start, end = int(sys.argv[1]), int(sys.argv[2])
 
+i = 0
+
 for resto in restos[start:end]:
-    print >> sys.stderr, resto[0]
+    print >> sys.stderr, resto[0], i
+    i += 1
     inspections = resto[1]
     for inspection in inspections[:1]:
         guid = inspection[0]
