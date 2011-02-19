@@ -25,7 +25,7 @@ poi_template = """<poi>
 
 
 def main():
-    f = open('repo.repr', 'r')
+    f = open('../repo.repr', 'r')
     repo = eval(f.read())
     f.close()
 

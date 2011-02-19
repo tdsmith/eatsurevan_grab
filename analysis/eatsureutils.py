@@ -33,6 +33,9 @@ def vch2datetime(vchdate):
     except:
         return datetime.datetime(1970,1,1)
 
+def is_recent(vchdate):
+    return (datetime.datetime.now() - vch2datetime(vchdate)).days < 365
+
 def is_naughty(repo, rguid):
     for inspection in repo[rguid]['inspections']:
         if (datetime.datetime.now() - vch2datetime(inspection['date'])).days > 365:
@@ -50,3 +53,20 @@ def is_naughty(repo, rguid):
             return True
     return False
 
+_jurismap = {
+        'Bowen Island': 'Bowen Island',
+        'Downtown': 'Vancouver',
+        'North Vancouver City': 'North Vancouver',
+        'North Vancouver District': 'North Vancouver',
+        'Richmond': 'Richmond',
+        'Vancouver - East': 'Vancouver',
+        'Vancouver - North': 'Vancouver',
+        'Vancouver - South': 'Vancouver',
+        'Vancouver - West': 'Vancouver',
+        'Vancouver Airport Authority': 'Richmond',
+        'West Vancouver': 'West Vancouver'}
+
+def juris2city(jurisdiction):
+    return _jurismap.get(jurisdiction, '')
+
+# def is_naughty(repo, guid)
